@@ -3,7 +3,7 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title">Products listing</span>
-          <table>
+          <table datatable [dtTrigger]="dtTrigger">
               <thead>
                   <tr>
                       <th>Id</th>
@@ -19,10 +19,17 @@
                     <td>{{ product.barcode }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
-                    <td>
-                      <a class="btn waves-effect deep-purple" [routerLink]="['/products/', product.id]">
-                        <i class="material-icons">edit</i>
-                      </a>
+                    <td class="d-flex">
+                      <div class="p-1">
+                        <a class="btn waves-effect deep-purple" [routerLink]="['/products/', product.id]">
+                          <i class="material-icons">edit</i>
+                        </a>
+                      </div>
+                      <div class="p-1">
+                        <a class="btn waves-effect red darken-1" (click)="deleteProduct(product.id)">
+                          <i class="material-icons">delete</i>
+                        </a>
+                      </div>
                     </td>
                   </tr>
               </tbody>

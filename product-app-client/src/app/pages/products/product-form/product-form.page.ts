@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Product } from '../products.model';
 import { ProductsService } from '../products.service';
@@ -17,38 +17,54 @@ export class ProductFormPage implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(paramMap => {
-    //   if (paramMap.has('id')) {
-    //     this.editMode = true;
+    this.route.paramMap.subscribe(paramMap => {
+      if (paramMap.has('id')) {
+        this.editMode = true;
 
-    //     this.productService.getProduct(paramMap.get('id')).subscribe(product => {
-    //       this.product = product;
-    //       this.initForm();
-    //     });
-    //   } else {
+        this.productService.getProduct(paramMap.get('id')).subscribe(product => {
+          this.product = product;
+          this.initForm();
+        });
+      } else {
         this.initForm();
-      // }
-    // })
+      }
+    });
   }
 
   initForm() {
     this.form = new FormGroup({
-      barcode: new FormControl(this.product !== null ? this.product.barcode : null, {
-        updateOn: 'blur',
+      barcode: new FormControl(this.product ? this.product.barcode : null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(13), Validators.pattern('^(0|[1-9][0-9]*)$')]
+      }),
+      description: new FormControl(this.product ? this.product.description : null, {
+        updateOn: 'change',
         validators: [Validators.required]
       }),
-      description: new FormControl(this.product !== null ? this.product.description : null, {
-        updateOn: 'blur',
-        validators: [Validators.required]
-      }),
-      price: new FormControl(this.product !== null ? this.product.price : null, {
-        updateOn: 'blur',
-        validators: [Validators.required]
+      price: new FormControl(this.product ? this.product.price : null, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.pattern('^-?[0-9]\\d*(\\.\\d{1,2})?$')]
       })
+    });
+  }
+
+  submit() {
+    if (this.form.invalid) {
+      return;
+    }
+
+    const value: Product = {
+      id: this.product ? this.product.id : null,
+      ...this.form.value
+    };
+
+    this.productService.addProduct(value).subscribe(() => {
+      this.router.navigate(['/products']);
     });
   }
 }

@@ -1,31 +1,40 @@
 <div class="row">
   <div class="col s12 m12">
-    <div class="card">
+    <div *ngIf="form" class="card">
       <div class="card-content">
         <span class="card-title">{{ editMode ? 'Edit' : 'New' }} Product</span>
         <form [formGroup]="form">
           <div class="row">
             <div class="input-field col s12">
               <input type="text" id="barcode" formControlName="barcode">
-              <label for="barcode">Barcode</label>
+              <label for="barcode" [class.active]="form.get('barcode').value != null">Barcode</label>
+              <small class="red-text" *ngIf="form.get('barcode').invalid && form.get('barcode').touched">
+                This field is not a valid barcode
+              </small>
             </div>
             <div class="input-field col s12">
               <input type="text" id="description" formControlName="description">
-              <label for="description">Description</label>
+              <label for="description" [class.active]="form.get('description').value != null">Description</label>
+              <small class="red-text" *ngIf="form.get('description').invalid && form.get('description').touched">
+                Invalid Field
+              </small>
             </div>
             <div class="input-field col s12">
               <input type="text" id="price" formControlName="price">
-              <label for="price">Price</label>
+              <label for="price" [class.active]="form.get('price').value != null">Price</label>
+              <small class="red-text" *ngIf="form.get('price').invalid && form.get('price').touched">
+                This field is not a valid price
+              </small>
             </div>
           </div>
         </form>
       </div>
       <div class="card-action d-flex justify-content-flex-end">
-        <div class="p-2">
+        <div class="p-1">
           <button class="btn waves-effect cyan" routerLink="/products">Cancel</button>
         </div>
-        <div class="p-2">
-          <button class="btn waves-effect green">
+        <div class="p-1">
+          <button class="btn waves-effect green" [disabled]="form.invalid" (click)="submit()">
             {{ editMode ? 'Save Changes' : 'Add Product' }}
           </button>
         </div>

@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.d-flex {
+    display: flex;
+}
+
+.justify-content-flex-end {
+    justify-content: flex-end;
+}
+
+.p-1 {
+    padding: 0.25em;
+}
