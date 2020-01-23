@@ -2,7 +2,7 @@
     <div class="col s12 m12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title">Products listing</span>
+          <span class="card-title">Products Listing</span>
           <table datatable [dtTrigger]="dtTrigger">
               <thead>
                   <tr>
@@ -21,7 +21,7 @@
                     <td>{{ product.price }}</td>
                     <td class="d-flex">
                       <div class="p-1">
-                        <a class="btn waves-effect deep-purple" [routerLink]="['/products/', product.id]">
+                        <a class="btn waves-effect deep-purple" [routerLink]="['/admin', 'products', product.id]">
                           <i class="material-icons">edit</i>
                         </a>
                       </div>

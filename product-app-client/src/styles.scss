@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background: url('assets/img/background.jpeg') center;
+}
+
 .d-flex {
     display: flex;
 }
@@ -9,4 +13,22 @@
 
 .p-1 {
     padding: 0.25em;
+}
+
+.dataTables_length {
+    label {
+        select {
+            display: initial;
+            width: auto;
+        }
+    }
+}
+
+.dataTables_filter {
+    label {
+        input {
+            width: auto !important;
+            padding-left: 10px !important;
+        }
+    }
 }
