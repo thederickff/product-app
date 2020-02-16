@@ -3,4 +3,5 @@ export class Product {
     barcode: string;
     description: string;
     price: number;
+    imageUrl: string;
 }

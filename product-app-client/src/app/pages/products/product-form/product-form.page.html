@@ -26,6 +26,12 @@
                 This field is not a valid price
               </small>
             </div>
+            <div class="input-field col s12">
+              <input type="file" id="image" (change)="onFileChanged($event)" formControlName="image">
+              <small class="red-text" *ngIf="form.get('image').invalid && form.get('image').touched">
+                This field is not a valid image
+              </small>
+            </div>
           </div>
         </form>
       </div>

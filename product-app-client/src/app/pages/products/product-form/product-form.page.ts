@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Product } from '../products.model';
-import { ProductsService } from '../products.service';
+import { Product } from '../../../models/products.model';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-form',
@@ -14,6 +14,7 @@ export class ProductFormPage implements OnInit {
   form: FormGroup;
   editMode = false;
   product: Product;
+  selectedImage: File;
 
   constructor(
     private productService: ProductsService,
@@ -49,8 +50,16 @@ export class ProductFormPage implements OnInit {
       price: new FormControl(this.product ? this.product.price : null, {
         updateOn: 'change',
         validators: [Validators.required, Validators.pattern('^-?[0-9]\\d*(\\.\\d{1,2})?$')]
+      }),
+      image: new FormControl(null, {
+        updateOn: 'change',
+        validators: this.product ? [] : [Validators.required]
       })
     });
+  }
+
+  onFileChanged(event: Event) {
+    this.selectedImage = (event.target as HTMLInputElement).files[0];
   }
 
   submit() {
@@ -58,13 +67,15 @@ export class ProductFormPage implements OnInit {
       return;
     }
 
-    const value: Product = {
-      id: this.product ? this.product.id : null,
-      ...this.form.value
-    };
+    // const value: Product = {
+    //   id: this.product ? this.product.id : null,
+    //   ...this.form.value
+    // };
 
-    this.productService.addProduct(value).subscribe(() => {
-      this.router.navigate(['/admin', 'products']);
-    });
+    // this.productService.addProduct(value).subscribe(() => {
+    //   this.router.navigate(['/admin', 'products']);
+    // });
+    console.log(this.form.value);
+    console.log(this.selectedImage);
   }
 }

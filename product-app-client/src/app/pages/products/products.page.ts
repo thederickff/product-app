@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductsService } from './products.service';
-import { Product } from './products.model';
+import { ProductsService } from '../services/products.service';
+import { Product } from '../../models/products.model';
 import { Subscription, Subject } from 'rxjs';
 
 @Component({
@@ -17,6 +17,7 @@ export class ProductsPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.productService.fetchProducts().subscribe(products => {
+      console.log(products);
       this.products = products;
       this.dtTrigger.next();
     });

@@ -12,7 +12,7 @@ public class Product {
     private String barcode;
     private String description;
     private Double price;
-
+    private String imageUrl;
 
     public Long getId()
     {
@@ -54,4 +54,13 @@ public class Product {
         this.price = price;
     }
 
+    public String getImageUrl()
+    {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl)
+    {
+        this.imageUrl = imageUrl;
+    }
 }
