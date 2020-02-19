@@ -67,15 +67,13 @@ export class ProductFormPage implements OnInit {
       return;
     }
 
-    // const value: Product = {
-    //   id: this.product ? this.product.id : null,
-    //   ...this.form.value
-    // };
+    const value: Product = {
+      id: this.product ? this.product.id : null,
+      ...this.form.value
+    };
 
-    // this.productService.addProduct(value).subscribe(() => {
-    //   this.router.navigate(['/admin', 'products']);
-    // });
-    console.log(this.form.value);
-    console.log(this.selectedImage);
+    this.productService.addProduct(value, this.selectedImage).subscribe(() => {
+      this.router.navigate(['/admin', 'products']);
+    });
   }
 }
