@@ -6,17 +6,21 @@ import { AuthGuard } from './pages/auth/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/admin/products',
+    redirectTo: '/explore',
     pathMatch: 'full'
   },
   {
     path: 'admin/products',
-    loadChildren: './pages/products/products.module#ProductsModule',
+    loadChildren: () => import('./pages/admin/products/products.module').then(m => m.ProductsModule),
     canActivate: [AuthGuard]
   },
   {
     path: 'auth',
-    loadChildren: './pages/auth/auth.module#AuthModule'
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'explore',
+    loadChildren: () => import('./pages/explore/explore.module').then(m => m.ExplorePageModule)
   }
 ];
 

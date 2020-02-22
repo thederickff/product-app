@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -70,4 +71,19 @@ public class ImageController {
 
     return new ResponseEntity(HttpStatus.OK);
   }
+
+  @DeleteMapping("{pid}")
+  public void deleteFile(@PathVariable("pid") String pid)
+  {
+    try {
+      Path fileToDelete = Paths.get("/home/derickfelix/uploads/" + pid); 
+
+      if (Files.exists(fileToDelete)) {
+        Files.delete(fileToDelete);
+      }
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 }

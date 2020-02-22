@@ -11,11 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    loadChildren: './product-form/product-form.module#ProductFormModule'
+    loadChildren: () => import('./product-form/product-form.module').then(m => m.ProductFormModule)
   },
   {
     path: ':id',
-    loadChildren: './product-form/product-form.module#ProductFormModule'
+    loadChildren: () => import('./product-form/product-form.module').then(m => m.ProductFormModule)
   }
 ];
 

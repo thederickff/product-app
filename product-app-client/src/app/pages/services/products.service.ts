@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Product } from '../../models/products.model';
 
@@ -28,9 +28,14 @@ export class ProductsService {
     if (selectedImage) {
       observable = observable.pipe(
         switchMap(() => {
-          if (!product.imageUrl) {
-            product.imageUrl = this.randomStr();
+          if (product.imageUrl) {
+            return this.http.delete(`http://localhost:8080/images/${product.imageUrl}`);
+          } else {
+            return of({});
           }
+        }),
+        switchMap(() => {
+          product.imageUrl = this.randomStr();
 
           const formData: FormData = new FormData();
           formData.append('pid', product.imageUrl);

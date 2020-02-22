@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Product } from '../../../models/products.model';
-import { ProductsService } from '../../services/products.service';
+import { Product } from '../../../../models/products.model';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-product-form',
@@ -69,6 +69,7 @@ export class ProductFormPage implements OnInit {
 
     const value: Product = {
       id: this.product ? this.product.id : null,
+      imageUrl: this.product ? this.product.imageUrl : null,
       ...this.form.value
     };
 
