@@ -1,15 +1,17 @@
 <nav class="deep-purple" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">
+        <a id="logo-container" routerLink="/" class="brand-logo">
             <img src="assets/img/shop.svg" height="20px">
             iShop
         </a>
         <ul class="right hide-on-med-and-down">
+            <li *ngIf="!authService.authenticated"><a routerLink="/auth">Console</a></li>
             <li *ngIf="authService.authenticated"><a routerLink="/admin/products/new">New Product</a></li>
             <li *ngIf="authService.authenticated"><a (click)="logout()">Logout</a></li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
+            <li *ngIf="!authService.authenticated"><a routerLink="/auth">Console</a></li>
             <li *ngIf="authService.authenticated"><a routerLink="/admin/products/new">New Product</a></li>
             <li *ngIf="authService.authenticated"><a (click)="logout()">Logout</a></li>
         </ul>

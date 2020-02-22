@@ -34,7 +34,7 @@ public class ImageController {
   public void downloadImage(@PathVariable("pid") String pid, HttpServletResponse response)
   {
     try {
-      File fileToDownload = new File("/home/derickfelix/uploads/" + pid);
+      File fileToDownload = new File("/product-app/uploads/" + pid);
 
       try (InputStream inputStream = new FileInputStream(fileToDownload)) {
         response.setContentType("application/force-download");
@@ -56,7 +56,7 @@ public class ImageController {
       throw new RuntimeException("File given is not valid!");
     }
 
-    String folder = "/home/derickfelix/uploads/";
+    String folder = "/product-app/uploads/";
 
     try {
       Path pathFolder = Paths.get(folder);
@@ -76,7 +76,7 @@ public class ImageController {
   public void deleteFile(@PathVariable("pid") String pid)
   {
     try {
-      Path fileToDelete = Paths.get("/home/derickfelix/uploads/" + pid); 
+      Path fileToDelete = Paths.get("/product-app/uploads/" + pid); 
 
       if (Files.exists(fileToDelete)) {
         Files.delete(fileToDelete);
