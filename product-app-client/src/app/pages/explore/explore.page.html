@@ -1,1 +1,16 @@
-works
+<div class="row">
+  <div class="col s12 m6" *ngFor="let section of sections">
+    <div class="card" *ngFor="let product of section">
+      <div class="card-image">
+        <img [src]="'http://localhost:8080/images/' + product.imageUrl">
+      </div>
+      <div class="card-content">
+        <span class="card-title">{{ product.description }}</span>
+        <p>$ {{ product.price }}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
