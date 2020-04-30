@@ -22,7 +22,7 @@
     "angular-datatables": "^8.0.0",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "materialize-css": "^1.0.0-rc.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
