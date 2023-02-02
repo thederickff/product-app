@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "angular-datatables": "^8.0.0",
+    "angular-datatables": "^15.0.0",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
     "jquery": "^3.5.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.23",
-    "@angular/cli": "~8.3.23",
+    "@angular/cli": "~15.1.4",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
     "@types/datatables.net": "^1.10.18",
